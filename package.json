@@ -1,0 +1,11 @@
+{
+  "name": "saltlakecity-auto-appraisers",
+  "version": "1.0.0",
+  "description": "Austin Auto Appraisers - Static Site",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
