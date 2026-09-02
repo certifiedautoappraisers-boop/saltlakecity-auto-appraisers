@@ -816,6 +816,72 @@ li { margin-bottom: 0.3em; }
 }
 
 
+/* === FORMS (contact + order) === */
+.form-group { margin-bottom: 20px; }
+.form-group > label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 15px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-group select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #a3a3a3; }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(232, 150, 30, 0.15);
+}
+.form-submit { margin-top: 26px; }
+.form-submit .btn { min-width: 180px; }
+.upload-dropzone {
+  padding: 34px 20px;
+  text-align: center;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-alt);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.upload-dropzone:hover { border-color: var(--color-primary); }
+.upload-dropzone-icon { font-size: 34px; line-height: 1; margin-bottom: 10px; }
+.upload-dropzone p { margin: 0 0 4px; color: var(--color-text); }
+.upload-dropzone .upload-formats { font-size: 13px; color: var(--color-text-light); }
+
 /* === ANTI-SPAM HONEYPOT (must stay visually hidden) === */
 .hp-field {
   position: absolute !important;
