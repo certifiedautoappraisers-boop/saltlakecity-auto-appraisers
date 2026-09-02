@@ -131,6 +131,12 @@
         <input type="file" id="fileUpload" name="documents" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" style="display:none;">
       </div>
 
+      <!-- Anti-spam honeypot. Hidden from real visitors; only bots fill it in. Do not remove. -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="orderCompanyWebsite">Website</label>
+        <input type="text" id="orderCompanyWebsite" name="_honey" tabindex="-1" autocomplete="off">
+      </div>
+
       <div class="form-submit">
         <button type="submit" class="btn btn-primary" style="width:100%;">Submit My Documents →</button>
       </div>

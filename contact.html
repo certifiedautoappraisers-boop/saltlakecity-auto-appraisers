@@ -100,8 +100,30 @@
             <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your vehicle and situation..."></textarea>
+            <label for="requestType">What do you need? *</label>
+            <select id="requestType" name="requestType" required>
+              <option value="">Please select&hellip;</option>
+              <option value="Diminished Value">Diminished Value (repaired after an accident)</option>
+              <option value="Total Loss / ACV Dispute">Total Loss / Actual Cash Value dispute</option>
+              <option value="Classic or Collector Car">Classic or Collector Car appraisal</option>
+              <option value="Loss of Use">Loss of Use / rental damages</option>
+              <option value="Estate, Divorce or Donation">Estate, Divorce or Donation appraisal</option>
+              <option value="Other">Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vehicle">Year, Make &amp; Model</label>
+            <input type="text" id="vehicle" name="vehicle" placeholder="e.g. 2022 Toyota RAV4 Hybrid XSE">
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us what happened *</label>
+            <textarea id="message" name="message" required minlength="30" placeholder="Briefly describe the damage, the repair cost, the insurance company involved, and what the adjuster has offered you so far."></textarea>
+            <small class="form-hint">Please include a sentence or two so we can review your situation properly.</small>
+          </div>
+          <!-- Anti-spam honeypot. Hidden from real visitors; only bots fill it in. Do not remove. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="companyWebsite">Website</label>
+            <input type="text" id="companyWebsite" name="_honey" tabindex="-1" autocomplete="off">
           </div>
           <div class="form-submit">
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -814,3 +814,23 @@ li { margin-bottom: 0.3em; }
   .site-header, .site-footer, .hero-buttons, .hero-cta { display: none; }
   body { color: #000; background: #fff; }
 }
+
+
+/* === ANTI-SPAM HONEYPOT (must stay visually hidden) === */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.form-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b7280;
+}

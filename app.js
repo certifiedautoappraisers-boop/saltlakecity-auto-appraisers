@@ -127,11 +127,91 @@ document.addEventListener('DOMContentLoaded', () => {
     startTestimonialCarousel();
   }
 
+  // === ANTI-SPAM GUARD =====================================================
+  // Blocks the VA-staffing / outsourcing bots that hammer the city-site forms.
+  // Signature seen repeatedly: name + @vas4hire.com-style email + the message
+  // field containing nothing but the submitter's own phone number.
+  // Blocked submissions show the normal success message so bots do not adapt.
+  const SPAM_EMAIL_FRAGMENTS = [
+    'vas4hire', 'virtualeaseservice', 'vasdirect', 'vaservice', 'va4hire',
+    'hireva', 'virtualassist', 'outsourc', 'offshore', 'bpo', 'staffing',
+    'leadgen', 'seoexpert', 'seoagency', 'digitalmarketing', 'webdesign',
+    'growthhack', 'coldcall', 'appointmentsetter'
+  ];
+  const SPAM_PHRASES = [
+    'virtual assistant', 'virtual assistants', 'va services', 'cold calling',
+    'cold caller', 'appointment setter', 'appointment setting',
+    'lead generation', 'seo services', 'seo audit', 'rank your website',
+    'increase your ranking', 'web development services', 'web design services',
+    'guest post', 'backlink', 'link building', 'remote staff', 'offshore team',
+    'outsourcing', 'dedicated team', 'crypto', 'bitcoin', 'forex',
+    'business loan', 'merchant cash advance', 'increase your sales',
+    'digital marketing agency', 'social media management'
+  ];
+  const AVR_FORM_LOADED_AT = Date.now();
+
+  function avrSpamCheck(form) {
+    if (!form) return null;
+    const field = function (name) {
+      const el = form.querySelector('[name="' + name + '"]');
+      return el ? String(el.value || '').trim() : '';
+    };
+
+    // 1. Honeypot — invisible to humans, irresistible to bots.
+    const honey = form.querySelector('input[name="_honey"]');
+    if (honey && honey.value.trim() !== '') return 'honeypot-filled';
+
+    // 2. Submitted faster than a human could physically type it.
+    if (Date.now() - AVR_FORM_LOADED_AT < 4000) return 'submitted-too-fast';
+
+    const email = field('email').toLowerCase();
+    const domain = email.indexOf('@') !== -1 ? email.split('@')[1] : '';
+    const message = field('message');
+    const phone = field('phone');
+    const name = field('fullName');
+
+    // 3. Known VA / outsourcing / SEO sender domains.
+    if (domain && SPAM_EMAIL_FRAGMENTS.some(function (f) { return domain.indexOf(f) !== -1; })) {
+      return 'blocked-sender-domain';
+    }
+
+    // 4. Message is nothing but digits/punctuation (i.e. just a phone number).
+    if (message && /^[\d\s\-\(\)\+\.]{7,}$/.test(message)) return 'message-is-digits-only';
+
+    // 5. Message merely repeats the phone number they already gave us.
+    const msgDigits = message.replace(/\D/g, '');
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (msgDigits.length > 6 && phoneDigits.length > 6 &&
+        msgDigits.replace(/^1/, '') === phoneDigits.replace(/^1/, '')) {
+      return 'message-duplicates-phone';
+    }
+
+    // 6. Sales-pitch vocabulary anywhere in the name or message.
+    const blob = (name + ' ' + message).toLowerCase();
+    if (SPAM_PHRASES.some(function (p) { return blob.indexOf(p) !== -1; })) return 'spam-phrase';
+
+    // 7. URLs pasted into the message — real appraisal customers rarely do this.
+    if (/https?:\/\/|www\.[a-z0-9-]+\.[a-z]{2,}/i.test(message)) return 'contains-link';
+
+    // 8. Same string dumped into name, email local-part and message.
+    if (name && message && name.toLowerCase() === message.toLowerCase()) return 'duplicated-fields';
+
+    return null;
+  }
+  // =========================================================================
+
   // === CONTACT FORM (Real submission via Formsubmit.co) ===
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const spamReason = avrSpamCheck(contactForm);
+      if (spamReason) {
+        console.warn('[anti-spam] contact submission blocked:', spamReason);
+        alert('Thank you for your message! We received it and will get back to you within 24 hours.');
+        contactForm.reset();
+        return;
+      }
       const submitBtn = contactForm.querySelector('button[type="submit"], input[type="submit"]');
       const originalText = submitBtn ? submitBtn.textContent : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
@@ -200,6 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ensureHidden('_next', window.location.origin + '/order.html?submitted=1');
 
     orderForm.addEventListener('submit', (e) => {
+      const orderSpamReason = avrSpamCheck(orderForm);
+      if (orderSpamReason) {
+        e.preventDefault();
+        console.warn('[anti-spam] order submission blocked:', orderSpamReason);
+        alert('Thank you! Your documents have been submitted successfully. An appraisal specialist will review your materials and follow up with you promptly.');
+        orderForm.reset();
+        return;
+      }
       const submitBtn = orderForm.querySelector('button[type="submit"], input[type="submit"]');
       const originalText = submitBtn ? submitBtn.textContent : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Uploading & Sending...'; }
