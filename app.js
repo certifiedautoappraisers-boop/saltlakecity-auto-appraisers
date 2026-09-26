@@ -150,8 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const AVR_FORM_LOADED_AT = Date.now();
 
+  // Soft flags: likely-automated signals that an AI assistant acting for a real customer
+  // can also trigger (fast fill, pasted links). These are delivered with a review flag
+  // instead of being silently dropped.
+  function avrSoftFlag(form, reason) {
+    if (!form) return;
+    let el = form.querySelector('input[name="_review_flag"]');
+    if (!el) {
+      el = document.createElement('input');
+      el.type = 'hidden';
+      el.name = '_review_flag';
+      form.appendChild(el);
+    }
+    el.value = el.value ? (el.value + ', ' + reason) : reason;
+  }
+
   function avrSpamCheck(form) {
     if (!form) return null;
+    const oldFlag = form.querySelector('input[name="_review_flag"]'); if (oldFlag) oldFlag.value = '';
     const field = function (name) {
       const el = form.querySelector('[name="' + name + '"]');
       return el ? String(el.value || '').trim() : '';
@@ -162,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (honey && honey.value.trim() !== '') return 'honeypot-filled';
 
     // 2. Submitted faster than a human could physically type it.
-    if (Date.now() - AVR_FORM_LOADED_AT < 4000) return 'submitted-too-fast';
+    if (Date.now() - AVR_FORM_LOADED_AT < 4000) avrSoftFlag(form, 'submitted-fast');
 
     const email = field('email').toLowerCase();
     const domain = email.indexOf('@') !== -1 ? email.split('@')[1] : '';
@@ -191,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (SPAM_PHRASES.some(function (p) { return blob.indexOf(p) !== -1; })) return 'spam-phrase';
 
     // 7. URLs pasted into the message — real appraisal customers rarely do this.
-    if (/https?:\/\/|www\.[a-z0-9-]+\.[a-z]{2,}/i.test(message)) return 'contains-link';
+    if (/https?:\/\/|www\.[a-z0-9-]+\.[a-z]{2,}/i.test(message)) avrSoftFlag(form, 'contains-link');
 
     // 8. Same string dumped into name, email local-part and message.
     if (name && message && name.toLowerCase() === message.toLowerCase()) return 'duplicated-fields';

@@ -44,13 +44,20 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-User-agent: meta-externalagent
-Allow: /
-
 User-agent: Bytespider
 Allow: /
 
 User-agent: CCBot
+Allow: /
+
+# Meta AI / Muse agents
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+User-agent: FacebookBot
 Allow: /
 
 Sitemap: https://www.saltlakecityautoappraisers.com/sitemap.xml`);

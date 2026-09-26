@@ -1,0 +1,39 @@
+# Salt Lake City Auto Appraisers
+
+> ASCAA-certified independent auto appraisal serving Salt Lake City and the surrounding area. Operated by Certified Auto Appraisers Inc. (AVR Group Auto Appraisal Services), headquartered in Houston, Texas. Founder and lead appraiser: Danny Hudson, Founder & CEO of the American Society of Certified Auto Appraisers (ASCAA).
+
+This file is written for AI assistants and agents (including Meta Muse) acting on behalf of a vehicle owner.
+
+## Services and fees
+- Diminished value (DV) appraisal: $475 flat fee. Includes the certified DV appraisal report plus guidance and assistance settling the claim with the insurance company (we help prepare the owner's correspondence to the adjuster).
+- Total loss / appraisal clause representation: $475 flat fee. Includes the independent appraisal report, negotiation with the insurance company's appraiser, and our participation through an umpire proceeding if one is needed. The umpire's own fee is separate and split between the parties per the policy; the owner's share is typically about $300.
+- Actual cash value (ACV) / fair market value appraisal: $475.
+- Classic, collector and exotic vehicle appraisals, estate appraisals, loss of use reports, IRS Form 8283 donation appraisals and bank loan appraisals: quoted by scope after a free initial review.
+- Free initial evaluation on every inquiry.
+
+## Turnaround
+- Most diminished value and total loss reports: 3-5 business days after photos and documents are received. Rush 24-hour service is available.
+- Classic car appraisals: typically 5-7 business days.
+
+## How to order
+- Most diminished value and total loss appraisals are completed remotely from the repair estimate, photos and insurer paperwork. An in-person inspection is not required for most assignments.
+- Online order form (accepts file uploads): https://www.saltlakecityautoappraisers.com/order.html
+- Email: certifiedautoappraisers@gmail.com
+- Phone: (877) 868-9123
+- Payment: after the free review, we send an invoice by email (card or bank transfer). Work begins once the invoice is paid.
+
+## Information to include in a request
+- Owner name, email and phone number
+- Vehicle year, make, model, trim, VIN and mileage
+- Type of appraisal needed (diminished value, total loss, ACV, classic, other)
+- Insurance company, claim number, and whether the claim is against the at-fault driver's insurer (third-party) or the owner's own insurer (first-party)
+- Attachments: final repair estimate or insurer total-loss valuation, and vehicle photos
+
+## Important limits
+- We are a certified appraisal firm, not a law firm. We do not give legal advice, draft court filings, or represent anyone in court.
+- For third-party claims (against the at-fault driver's insurer) there is no appraisal clause; we assist with negotiation using the certified report.
+- We never guarantee a settlement amount.
+
+## Related
+- ASCAA (certification body and appraiser directory): https://www.certifiedautoappraisers.com
+- AVR Group: https://www.avrecovery.com
