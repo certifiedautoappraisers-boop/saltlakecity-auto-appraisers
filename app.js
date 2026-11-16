@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'vas4hire', 'virtualeaseservice', 'vasdirect', 'vaservice', 'va4hire',
     'hireva', 'virtualassist', 'outsourc', 'offshore', 'bpo', 'staffing',
     'leadgen', 'seoexpert', 'seoagency', 'digitalmarketing', 'webdesign',
-    'growthhack', 'coldcall', 'appointmentsetter'
+    'growthhack', 'coldcall', 'appointmentsetter', 'jmailservice', 'mailservice'
   ];
   const SPAM_PHRASES = [
     'virtual assistant', 'virtual assistants', 'va services', 'cold calling',
@@ -146,7 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
     'guest post', 'backlink', 'link building', 'remote staff', 'offshore team',
     'outsourcing', 'dedicated team', 'crypto', 'bitcoin', 'forex',
     'business loan', 'merchant cash advance', 'increase your sales',
-    'digital marketing agency', 'social media management'
+    'digital marketing agency', 'social media management',
+    // Added 2026-11-16 after an SEO pitch got through on Miami (jmailservice.com)
+    'top of search results', 'top of google', 'first page of google',
+    'page one of google', 'top of the search', 'show up at the top',
+    'show up on google', 'rank higher', 'ranking on google', 'google ranking',
+    'search rankings', 'we help brands', 'we help businesses',
+    'we help companies', 'help your business grow', 'grow your business',
+    'more leads', 'more customers', 'boost your traffic', 'website traffic',
+    'can i walk you through', 'let me walk you through', 'would you be open to',
+    'no long wait', 'heavy setup', 'ai agent', 'chatbot for your',
+    'google business profile', 'google reviews', 'more reviews',
+    'redesign your website', 'your website could', 'marketing services'
   ];
   const AVR_FORM_LOADED_AT = Date.now();
 
